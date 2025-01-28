@@ -2,7 +2,10 @@
 
 ID=$(id -u)
 
-echo "script name :: $0"
+TIMESTAMP=$(date +%F)
+LOGFILE="/tmp/$0-$TIMESTAMP.log"
+
+#echo "script name :: $0"
 
 VALIDATE()
 {
@@ -26,8 +29,8 @@ else
     echo "Installing mysql is scuess"s
 
 fi
-yum install mysql -y
+yum install mysql -y &>> $LOGFILE
 VALIDATE $? "Installing Mysql"
 
-yum install git -y
+yum install git -y &>> $LOGFILE
 VALIDATE $? "Installing git"

@@ -5,6 +5,10 @@ ID=$(id -u)
 TIMESTAMP=$(date +%F)
 LOGFILE="/tmp/$0-$TIMESTAMP.log"
 
+R="\e[31m"
+G="\e[32m"
+N="\e[0m"
+
 #echo "script name :: $0"
 
 VALIDATE()
@@ -12,10 +16,10 @@ VALIDATE()
 
     if [ $? -ne 0 ]
     then 
-        echo "ERROR :: $2.. failed"
+        echo  -e "ERROR :: $2..$R failed $N"
         exit 1
     else 
-        echo "$2... scuess"s
+        echo -e "$2...  $G scuess $N"
 
     fi
 }
@@ -26,7 +30,7 @@ then
     echo "ERROR :: Installing Mysql is failed"
     exit 1
 else 
-    echo "Installing mysql is scuess"s
+    echo "Installing mysql is scuess"
 
 fi
 yum install mysql -y &>> $LOGFILE
